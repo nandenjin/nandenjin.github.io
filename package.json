@@ -1,0 +1,7 @@
+{
+  "name": "nandenjin.github.io",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "node ./builder/build.js"
+  }
+}
