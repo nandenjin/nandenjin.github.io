@@ -11,12 +11,16 @@ cache:
   directories:
     - node_modules
 
-script: npm run build  
-after_success: 
+before_script:
   - git config user.email "nandenjin@users.noreply.github.com"
   - git config user.name "Robot Builder"
   - git fetch origin master:master
   - git checkout master
+  - git merge release
+  
+script: npm run build 
+ 
+after_success: 
   - git add .
-  - git commit -m "Build for ${TRAVIS_COMMIT} by Robot Builder"
+  - git commit -m "Build for ${TRAVIS_COMMIT}"
   - git push --force --quiet "https://${GH_TOKEN}@github.com/nandenjin/nandenjin.github.io.git" master:master > /dev/null 2>&1
